@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-cn"><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="referrer" content="strict-origin" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Categories &middot; Search</title>
+  
+  <meta name="description" content="A responsive and clean start page, make your Internet easier as well." />
+   <link rel="icon" href="/favicon.ico" /> 
+
+  <link type="text/css" rel="stylesheet" href="./css/main.css" />
+  <link type="text/css" rel="stylesheet" href="./css/search.css" />
+  <link type="text/css" rel="stylesheet" href="./css/color.css" />
+  
+  
+  
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" 
+      crossorigin="anonymous" />
+  
+  
+
+  
+  <script src="./js/search.js"></script>
+  <script src="./js/init.js"></script>
+  <script>
+    
+    
+    
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+      init();
+    });
+  </script>
+  
+
+  <style type="text/css">
+  
+  
+    
+      body {
+        background: #fff;
+        background-position: top;
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+      }
+    
+  
+  
+
+  
+  
+    
+      * {
+        color: rgb(0 0 0)
+      }
+    
+  
+  
+
+  
+  
+    
+      .u-theme-f, 
+      .search-group>span, 
+      .search-group-list label:hover, 
+      .search-engines li label::first-letter, 
+      .search-engines input:hover+label span, 
+      .search-engines input:checked+label span, 
+      .searchbox input, 
+      #poetry, #poetry-author, 
+      .card ul li:hover *, 
+      .card ul li::first-letter, .card ul li i {
+        color: #ab3300;
+      }
+
+      .search-engines input:checked+label span, 
+      .searchbox input {
+        border-bottom-color: #ab3300;
+      }
+
+      #search-button {
+        background-color: #ab3300;
+      }
+
+      #tooltip {
+        box-shadow: 0 0 5px #ab3300;;
+      }
+    
+  
+  
+
+  
+  
+    .card,
+    .searchbox form:hover, 
+    .searchbox form:focus-within, 
+    .search-engines input:hover+label span,
+    .search-engines input:checked+label span {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .blur, 
+    .search-group-list {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  
+  
+
+</style>
+
+
+  
+  
+  
+
+</head>
+<body>
+<header>
+  <nav>
+    <div class="nav-left">
+      <ul>
+        
+      </ul>
+    </div>
+    <div class="nav-right">
+      <ul class="datetime">
+        <li class="date">
+          <i class="far fa-calendar u-theme-f"></i>&nbsp;
+          <span id="current_date"></span>
+        </li>
+        <li class="time">
+          <i class="far fa-clock u-theme-f"></i>&nbsp;
+          <span id="current_time"></span>
+        </li>
+      </ul>
+    </div>
+
+    
+    
+    
+    
+  </nav>
+</header>
+<main>
+    </main>
+
+    
+    <div id="tooltip">
+      <i class="far fa-hand-point-right u-theme-f"></i>&nbsp;
+      <p id="tooltiptext">tooltip</p>
+    </div>
+    
+
+    
+    <div id="back2top-btn" onclick="smoothScrollToTop();">
+      <i class="fas fa-rocket u-theme-f"></i>
+    </div>
+    
+
+  
+  
+    <footer>
+      
+      
+      
+        <div class="footer-line">
+          <span> Made with <i class="fas fa-heart throb" style="color:#d43f57"></i> SmallKunKun </span>
+        </div>
+      
+      
+
+      
+      
+        <div class="footer-line">
+          Powered by <a target="_blank" one-link-mark="yes" href="https://gohugo.io" title="Hugo" class="u-theme-f"> Hugo </a> |
+          Theme by
+          <a target="_blank" one-link-mark="yes" href="https://github.com/SylleoYr/hugo-theme-OriginStart" title="OriginStart" class="u-theme-f">
+            <i class="fas fa-heartbeat u-theme-f"></i>&nbsp;OriginStart
+          </a>
+        </div>
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+
+    </footer>
+  
+
+
+
+
+<script>
+  var timer = setInterval(function () {
+    localTimer();
+  }, 1000);
+
+  function addZero(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
+  }
+
+  function localTimer() {
+    var today = new Date();
+    var time = addZero(today.getHours()) + ":" + addZero(today.getMinutes()) + ":" + addZero(today.getSeconds());
+    document.getElementById("current_time").innerHTML = time;
+
+    var date = today.getDate() + ' . ' + (today.getMonth() + 1) + ' . ' + today.getFullYear();
+    document.getElementById("current_date").innerHTML = date;
+  }
+</script>
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" size="" alpha="" zIndex="" src="./js/ribbon.min.js"></script>
+  
+
+
+
+
+
+  
+    
+  
+    
+      <script src="./js/alert.js" defer></script>
+    
+  
+
+
+</body>
+</html>

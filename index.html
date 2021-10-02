@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-cn"><head>
+	<meta name="generator" content="Hugo 0.74.3" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="referrer" content="strict-origin" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Search</title>
+  
+  <meta name="description" content="A responsive and clean start page, make your Internet easier as well." />
+   <link rel="icon" href="/favicon.ico" /> 
+
+  <link type="text/css" rel="stylesheet" href="./css/main.css" />
+  <link type="text/css" rel="stylesheet" href="./css/search.css" />
+  <link type="text/css" rel="stylesheet" href="./css/color.css" />
+  
+  
+  
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" 
+      crossorigin="anonymous" />
+  
+  
+
+  
+  <script src="./js/search.js"></script>
+  <script src="./js/init.js"></script>
+  <script>
+    
+    
+    
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+      init();
+    });
+  </script>
+  
+
+  <style type="text/css">
+  
+  
+    
+      body {
+        background: #fff;
+        background-position: top;
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+      }
+    
+  
+  
+
+  
+  
+    
+      * {
+        color: rgb(0 0 0)
+      }
+    
+  
+  
+
+  
+  
+    
+      .u-theme-f, 
+      .search-group>span, 
+      .search-group-list label:hover, 
+      .search-engines li label::first-letter, 
+      .search-engines input:hover+label span, 
+      .search-engines input:checked+label span, 
+      .searchbox input, 
+      #poetry, #poetry-author, 
+      .card ul li:hover *, 
+      .card ul li::first-letter, .card ul li i {
+        color: #ab3300;
+      }
+
+      .search-engines input:checked+label span, 
+      .searchbox input {
+        border-bottom-color: #ab3300;
+      }
+
+      #search-button {
+        background-color: #ab3300;
+      }
+
+      #tooltip {
+        box-shadow: 0 0 5px #ab3300;;
+      }
+    
+  
+  
+
+  
+  
+    .card,
+    .searchbox form:hover, 
+    .searchbox form:focus-within, 
+    .search-engines input:hover+label span,
+    .search-engines input:checked+label span {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .blur, 
+    .search-group-list {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  
+  
+
+</style>
+
+
+  
+  
+  
+
+</head>
+<body>
+<header>
+  <nav>
+    <div class="nav-left">
+      <ul>
+        
+      </ul>
+    </div>
+    <div class="nav-right">
+      <ul class="datetime">
+        <li class="date">
+          <i class="far fa-calendar u-theme-f"></i>&nbsp;
+          <span id="current_date"></span>
+        </li>
+        <li class="time">
+          <i class="far fa-clock u-theme-f"></i>&nbsp;
+          <span id="current_time"></span>
+        </li>
+      </ul>
+    </div>
+
+    
+    
+    
+    
+  </nav>
+</header>
+<main>
+
+
+
+  <section class="search">
+    <div class="searchbox">
+      
+      <div id="search-list" class="hide-type-list">
+        
+        <div class="search-group">
+          <span id="group-name"></span>
+          <div class="search-group-list">
+            
+              
+                <label for="group-SEARCH" onclick="changeSearchGroup(this.innerText.trim())">
+                  <span class="tile-lg">
+                    <i class="fas fa-search indigo u-theme-f"></i>
+                  </span>SEARCH</label>
+              
+            
+              
+            
+              
+                <label for="group-MUSIC" onclick="changeSearchGroup(this.innerText.trim())">
+                  <span class="tile-lg">
+                    <i class="fas fa-search pink u-theme-f"></i>
+                  </span>MUSIC</label>
+              
+            
+              
+                <label for="group-MOVIE" onclick="changeSearchGroup(this.innerText.trim())">
+                  <span class="tile-lg">
+                    <i class="fas fa-search cyan u-theme-f"></i>
+                  </span>MOVIE</label>
+              
+            
+          </div> 
+        </div> 
+        
+
+        
+        
+          
+            <div class="group-items" id="group-SEARCH">
+              <ul class="search-engines">
+                
+                  
+                    <li>
+                      <input type="radio" name="engine" id="engine-Baidu" 
+                        value="https://www.baidu.com/s?wd={query}&amp;ie=utf-8" hidden onchange="changeSearchEngine(this.value)">
+                      <label for="engine-Baidu">
+                        <span>Baidu</span>
+                      </label>
+                    </li>
+                  
+                
+                  
+                    <li>
+                      <input type="radio" name="engine" id="engine-GitHub" 
+                        value="https://github.com/search?q={query}&amp;ref=opensearch" hidden onchange="changeSearchEngine(this.value)">
+                      <label for="engine-GitHub">
+                        <span>GitHub</span>
+                      </label>
+                    </li>
+                  
+                
+                  
+                    <li>
+                      <input type="radio" name="engine" id="engine-Bilibili" 
+                        value="https://search.bilibili.com/all?keyword={query}" hidden onchange="changeSearchEngine(this.value)">
+                      <label for="engine-Bilibili">
+                        <span>Bilibili</span>
+                      </label>
+                    </li>
+                  
+                
+                  
+                    <li>
+                      <input type="radio" name="engine" id="engine-Zhihu" 
+                        value="https://www.zhihu.com/search?type=content&amp;q={query}" hidden onchange="changeSearchEngine(this.value)">
+                      <label for="engine-Zhihu">
+                        <span>Zhihu</span>
+                      </label>
+                    </li>
+                  
+                
+                  
+                    <li>
+                      <input type="radio" name="engine" id="engine-Douban" 
+                        value="https://www.douban.com/search?q={query}" hidden onchange="changeSearchEngine(this.value)">
+                      <label for="engine-Douban">
+                        <span>Douban</span>
+                      </label>
+                    </li>
+                  
+                
+                  
+                
+              </ul>
+            </div> 
+          
+        
+          
+        
+          
+            <div class="group-items" id="group-MUSIC">
+              <ul class="search-engines">
+                
+                  
+                    <li>
+                      <input type="radio" name="engine" id="engine-ogle" 
+                        value="https://google.com/search" hidden onchange="changeSearchEngine(this.value)">
+                      <label for="engine-ogle">
+                        <span>ogle</span>
+                      </label>
+                    </li>
+                  
+                
+                  
+                    <li>
+                      <input type="radio" name="engine" id="engine-ckDuckGo" 
+                        value="https://www.duckduckgo.com" hidden onchange="changeSearchEngine(this.value)">
+                      <label for="engine-ckDuckGo">
+                        <span>ckDuckGo</span>
+                      </label>
+                    </li>
+                  
+                
+              </ul>
+            </div> 
+          
+        
+          
+            <div class="group-items" id="group-MOVIE">
+              <ul class="search-engines">
+                
+                  
+                    <li>
+                      <input type="radio" name="engine" id="engine-Googl" 
+                        value="https://google.com/search" hidden onchange="changeSearchEngine(this.value)">
+                      <label for="engine-Googl">
+                        <span>Googl</span>
+                      </label>
+                    </li>
+                  
+                
+                  
+                    <li>
+                      <input type="radio" name="engine" id="engine-DucuckGo" 
+                        value="https://www.duckduckgo.com" hidden onchange="changeSearchEngine(this.value)">
+                      <label for="engine-DucuckGo">
+                        <span>DucuckGo</span>
+                      </label>
+                    </li>
+                  
+                
+              </ul>
+            </div> 
+          
+        
+      </div> 
+      
+
+      <form height="50px" action="" method="get" target="_blank" id="super-search-fm" onsubmit="return doSearch()">
+        <input autocomplete="off" type="text" id="search-text" style="outline:none" autofocus="">
+        <button type="submit" id="search-button"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
+    
+  </section>
+
+
+
+
+
+  
+    
+    
+      <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+      <div class="poetry" onclick="getPoetry('jinrishici', '')">
+        <p id="poetry"><i class="fas fa-spinner u-theme-f"></i></p>
+        
+      </div>
+    
+  
+
+
+
+
+<section class="cards">
+  
+    
+      <div class="card">
+        <h3><i class="fa fa-video blue"></i>&nbsp;Video</h3>
+        
+        <ul>
+          
+            
+              <li>
+                <a onclick="window.open(&#34;https://www.bilibili.com/&#34;, '_blank');" one-link-mark="yes" rel="nofollow" 
+                  tooltip-text="哔哩哔哩 (゜-゜)つロ 干杯~-bilibili" onmouseover="showTooltip(this);" onmouseout="hideTooltip();">
+                  BiliBili</a>
+              </li>
+            
+          
+            
+              <li>
+                <a onclick="window.open(&#34;https://www.acfun.cn/&#34;, '_blank');" one-link-mark="yes" rel="nofollow" 
+                  tooltip-text="AcFun是国内首家弹幕视频网站，这里有全网独家动漫新番， 友好的弹幕氛围，有趣的UP主，好玩有科技感的虚拟偶像，年轻人都在用" onmouseover="showTooltip(this);" onmouseout="hideTooltip();">
+                  Acfun</a>
+              </li>
+            
+          
+            
+              <li>
+                <a onclick="window.open(&#34;https://www.iqiyi.com/&#34;, '_blank');" one-link-mark="yes" rel="nofollow" 
+                  tooltip-text="爱奇艺-在线视频网站-海量正版高清视频在线观看" onmouseover="showTooltip(this);" onmouseout="hideTooltip();">
+                  爱奇艺</a>
+              </li>
+            
+          
+            
+              <li>
+                <a onclick="window.open(&#34;https://v.qq.com/&#34;, '_blank');" one-link-mark="yes" rel="nofollow" 
+                  tooltip-text="腾讯视频-中国领先的在线视频媒体平台,海量高清视频在线观看" onmouseover="showTooltip(this);" onmouseout="hideTooltip();">
+                  腾讯视频</a>
+              </li>
+            
+          
+        </ul>
+        
+      </div>
+    
+  
+    
+      <div class="card">
+        <h3><i class="fas fa-code indigo"></i>&nbsp;DEV</h3>
+        
+        <ul>
+          
+            
+              <li>
+                <a onclick="window.open(&#34;https://www.github.com/&#34;, '_blank');" one-link-mark="yes" rel="nofollow" 
+                  tooltip-text="" onmouseover="showTooltip(this);" onmouseout="hideTooltip();">
+                  Github</a>
+              </li>
+            
+          
+            
+              <li>
+                <a onclick="window.open(&#34;https://www.gitee.com&#34;, '_blank');" one-link-mark="yes" rel="nofollow" 
+                  tooltip-text="" onmouseover="showTooltip(this);" onmouseout="hideTooltip();">
+                  Gitee</a>
+              </li>
+            
+          
+            
+              <li>
+                <a onclick="window.open(&#34;https://www.coding.net&#34;, '_blank');" one-link-mark="yes" rel="nofollow" 
+                  tooltip-text="" onmouseover="showTooltip(this);" onmouseout="hideTooltip();">
+                  Coding</a>
+              </li>
+            
+          
+            
+              <li>
+                <a onclick="window.open(&#34;https://www.gitlab.com/&#34;, '_blank');" one-link-mark="yes" rel="nofollow" 
+                  tooltip-text="" onmouseover="showTooltip(this);" onmouseout="hideTooltip();">
+                  Gitlab</a>
+              </li>
+            
+          
+            
+              <li>
+                <a onclick="window.open(&#34;https://www.netlify.com&#34;, '_blank');" one-link-mark="yes" rel="nofollow" 
+                  tooltip-text="" onmouseover="showTooltip(this);" onmouseout="hideTooltip();">
+                  Netlify</a>
+              </li>
+            
+          
+            
+              <li>
+                <a onclick="window.open(&#34;https://www.vercel.com&#34;, '_blank');" one-link-mark="yes" rel="nofollow" 
+                  tooltip-text="" onmouseover="showTooltip(this);" onmouseout="hideTooltip();">
+                  Vercel</a>
+              </li>
+            
+          
+        </ul>
+        
+      </div>
+    
+  
+    
+      <div class="card">
+        <h3><i class="fa fa-comments pink"></i>&nbsp;Others</h3>
+        
+        <ul>
+          
+            
+              <li>
+                <a onclick="window.open(&#34;https://www.mcbbs.net/&#34;, '_blank');" one-link-mark="yes" rel="nofollow" 
+                  tooltip-text="" onmouseover="showTooltip(this);" onmouseout="hideTooltip();">
+                  MCBBS</a>
+              </li>
+            
+          
+            
+              <li>
+                <a onclick="window.open(&#34;https://music.apple.cn/&#34;, '_blank');" one-link-mark="yes" rel="nofollow" 
+                  tooltip-text="" onmouseover="showTooltip(this);" onmouseout="hideTooltip();">
+                  Apple Music</a>
+              </li>
+            
+          
+            
+              <li>
+                <a onclick="window.open(&#34;https://fanyi.baidu.com/&#34;, '_blank');" one-link-mark="yes" rel="nofollow" 
+                  tooltip-text="" onmouseover="showTooltip(this);" onmouseout="hideTooltip();">
+                  Baidu翻译</a>
+              </li>
+            
+          
+            
+              <li>
+                <a onclick="window.open(&#34;https://map.baidu.com&#34;, '_blank');" one-link-mark="yes" rel="nofollow" 
+                  tooltip-text="" onmouseover="showTooltip(this);" onmouseout="hideTooltip();">
+                  Baidu地图</a>
+              </li>
+            
+          
+            
+              <li>
+                <a onclick="window.open(&#34;https://mail.qq.com&#34;, '_blank');" one-link-mark="yes" rel="nofollow" 
+                  tooltip-text="" onmouseover="showTooltip(this);" onmouseout="hideTooltip();">
+                  QQMail</a>
+              </li>
+            
+          
+        </ul>
+        
+      </div>
+    
+  
+</section>
+
+
+
+    </main>
+
+    
+    <div id="tooltip">
+      <i class="far fa-hand-point-right u-theme-f"></i>&nbsp;
+      <p id="tooltiptext">tooltip</p>
+    </div>
+    
+
+    
+    <div id="back2top-btn" onclick="smoothScrollToTop();">
+      <i class="fas fa-rocket u-theme-f"></i>
+    </div>
+    
+
+  
+  
+    <footer>
+      
+      
+      
+        <div class="footer-line">
+          <span> Made with <i class="fas fa-heart throb" style="color:#d43f57"></i> SmallKunKun </span>
+        </div>
+      
+      
+
+      
+      
+        <div class="footer-line">
+          Powered by <a target="_blank" one-link-mark="yes" href="https://gohugo.io" title="Hugo" class="u-theme-f"> Hugo </a> |
+          Theme by
+          <a target="_blank" one-link-mark="yes" href="https://github.com/SylleoYr/hugo-theme-OriginStart" title="OriginStart" class="u-theme-f">
+            <i class="fas fa-heartbeat u-theme-f"></i>&nbsp;OriginStart
+          </a>
+        </div>
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+
+    </footer>
+  
+
+
+
+
+<script>
+  var timer = setInterval(function () {
+    localTimer();
+  }, 1000);
+
+  function addZero(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
+  }
+
+  function localTimer() {
+    var today = new Date();
+    var time = addZero(today.getHours()) + ":" + addZero(today.getMinutes()) + ":" + addZero(today.getSeconds());
+    document.getElementById("current_time").innerHTML = time;
+
+    var date = today.getDate() + ' . ' + (today.getMonth() + 1) + ' . ' + today.getFullYear();
+    document.getElementById("current_date").innerHTML = date;
+  }
+</script>
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" size="" alpha="" zIndex="" src="./js/ribbon.min.js"></script>
+  
+
+
+
+
+
+  
+    
+  
+    
+      <script src="./js/alert.js" defer></script>
+    
+  
+
+
+</body>
+</html>
